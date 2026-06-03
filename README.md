@@ -1,1 +1,815 @@
-# APEXSOLUTIONTASKERS
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Crowdsourcing Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+        .btn-success:hover {
+            background-color: #059669;
+        }
+
+        /* Welcoming Remarks Hero with Image */
+        .welcome-hero {
+            padding: 5rem 10% 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .welcome-badge {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .welcome-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            max-width: 900px;
+        }
+
+        .welcome-hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 850px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 750px;
+            margin-top: 2.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Split Section: Form and Info */
+        .onboarding-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 968px) {
+            .onboarding-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .praise-details h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .praise-fact {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .praise-fact i {
+            color: var(--success);
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Sign Up Form Card */
+        .signup-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+        }
+
+        .signup-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Tasks Marketplace Area */
+        .market-section {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .market-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .market-title h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .market-title p {
+            color: var(--text-muted);
+        }
+
+        .min-wage-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Locked Filter/State overlay styling */
+        .market-wrapper {
+            position: relative;
+        }
+
+        .market-blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.95) 100%);
+            backdrop-filter: blur(6px);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .task-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            transition: border-color 0.3s;
+        }
+
+        .task-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .task-card {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .task-main h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .complexity-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .c-simple { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+        .c-medium { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        .c-complex { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+
+        .task-reqs {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .task-reqs ul {
+            list-style-position: inside;
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .task-meta {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .task-meta {
+                text-align: left;
+                align-items: flex-start;
+            }
+        }
+
+        .task-rate {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        /* Application Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .app-option-box {
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .app-option-box i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 0.2rem;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 10%;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo"><i class="fa-solid fa-layer-group"></i>APEX<span>CROWD</span></div>
+        <a href="#signup" class="btn btn-success"><i class="fa-solid fa-user-plus"></i> Join Network</a>
+    </nav>
+
+    <!-- Welcoming Remarks Section -->
+    <header class="welcome-hero">
+        <div class="welcome-badge">Welcome to Global Operations</div>
+        <h1>Unleashing Human Intelligence at Unprecedented Scale</h1>
+        <p>
+            Apex Crowdsourcing Solutions stands as the world's premier engine for high-velocity data enrichment, distributed evaluation, and complex cognitive processing. By coupling a brilliant globally distributed workforce with state-of-the-art algorithmic matching, we consistently redefine the boundaries of what speed, accuracy, and scalability mean to modern enterprises. 
+        </p>
+        <a href="#signup" class="btn"><i class="fa-solid fa-rocket"></i> Create Account & Explore Tasks</a>
+        
+        <!-- Integrated Image Layout Link -->
+        <div class="hero-image-container">
+            <img src="https://i.imgur.com/MNeGasm.png" alt="Apex Crowdsourcing Solutions Interface Overview" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'">
+        </div>
+    </header>
+
+    <!-- Platform Onboarding and Brand Praise Area -->
+    <section class="onboarding-container" id="signup">
+        <div class="praise-details">
+            <h2>Why Experts Choose Apex</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                We honor premium human intuition. Unlike structural micro-platforms that devalue time, Apex guarantees exceptional minimum parameters and clean workflows for all authorized operators.
+            </p>
+            
+            <div class="praise-fact">
+                <i class="fa-solid fa-circle-check"></i>
+                <div>
+                    <strong>Guaranteed Living Wages</strong>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Every contract published explicitly meets or exceeds a baseline value of $10.00/hour.</p>
+                </div>
+            </div>
+
+            <div class="praise-fact">
+                <i class="fa-solid fa-circle-check"></i>
+                <div>
+                    <strong>Instant Automated Routing</strong>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">No endless bidding loops. Once you establish parameters within your profile, accurate task advertisements route straight to you.</p>
+                </div>
+            </div>
+
+            <div class="praise-fact">
+                <i class="fa-solid fa-circle-check"></i>
+                <div>
+                    <strong>Cryptographic Fraud Protection</strong>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Our advanced infrastructure isolates bad actors and automated bots, ensuring honest contributors get paid faster.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Container -->
+        <div class="signup-card">
+            <h3>Start Earning Instantly</h3>
+            <p>Establish your unified digital worker profile to verify compliance and securely access the available projects registry.</p>
+            
+            <form id="registrationForm" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label for="regEmail">Corporate / Personal Email</label>
+                    <input type="email" id="regEmail" class="form-input" placeholder="name@domain.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Mobile Contact Number</label>
+                    <input type="tel" id="regPhone" class="form-input" placeholder="+1 (555) 000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Account Access Password</label>
+                    <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required minlength="6">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; justify-content: center; margin-top: 1rem;">
+                    <i class="fa-solid fa-shield"></i> Initialize & Verify Profile
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Project Marketplace / Tasks Available Area -->
+    <section class="market-section" id="marketplace">
+        <div class="market-header">
+            <div class="market-title">
+                <h2>Active Task Advertisements</h2>
+                <p>Real-time distributed workloads requiring human alignment, execution, or programmatic validation.</p>
+            </div>
+            <div class="min-wage-badge">
+                <i class="fa-solid fa-hand-holding-dollar"></i> Min Rate: $10.00 / Hr
+            </div>
+        </div>
+
+        <div class="market-wrapper">
+            <!-- This overlay dynamically drops away when registration completes -->
+            <div class="market-blur-overlay" id="lockOverlay">
+                <i class="fa-solid fa-lock" style="font-size: 3rem; color: var(--accent); margin-bottom: 1.5rem;"></i>
+                <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Marketplace Restrained</h3>
+                <p style="color: var(--text-muted); max-width: 450px; margin-bottom: 1.5rem;">
+                    To protect dataset integrity and proprietary pipelines, task descriptions and custom application interfaces unlock immediately following profile registration.
+                </p>
+                <a href="#signup" class="btn"><i class="fa-solid fa-user-pen"></i> Register to Unlock Marketplace</a>
+            </div>
+
+            <!-- 10 Tasks Grid: Simple to Complex -->
+            <div class="tasks-grid">
+                
+                <!-- Task 1 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>1. UI Elements Spatial Labeling <span class="complexity-badge c-simple">Simple</span></h3>
+                        <p>Draw tight bounding boxes surrounding active links, imagery, headers, and payment buttons across diverse mobile web application viewports.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Precision pointer device tracking (Mouse or Stylus required)</li>
+                                <li>Basic attention validation screening passed</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$11.50 / hr</div>
+                        <button class="btn" onclick="openApplication('UI Elements Spatial Labeling')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 2 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>2. Synthetic Voice Phoneme Verification <span class="complexity-badge c-simple">Simple</span></h3>
+                        <p>Listen to 5-second audio snippets generated by text-to-speech models and log any mechanical distortion, unnatural spacing, or phonetic skips.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>High-quality audio monitoring setup (Headphones required)</li>
+                                <li>Quiet acoustic work surroundings</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$12.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Synthetic Voice Phoneme Verification')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 3 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>3. Retail E-Receipt Extraction Audit <span class="complexity-badge c-simple">Simple</span></h3>
+                        <p>Validate OCR auto-extracted alphanumeric strings against messy raw physical receipt images to fix missing item prices or dates.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>High accuracy typing metrics</li>
+                                <li>Excellent close-up image tracking abilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$13.50 / hr</div>
+                        <button class="btn" onclick="openApplication('Retail E-Receipt Extraction Audit')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 4 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>4. Autonomous Drone Obstacle Labeling <span class="complexity-badge c-medium">Medium</span></h3>
+                        <p>Evaluate low-altitude aerial camera footage to accurately tag power lines, tree limbs, fence barriers, and small livestock across rural zones.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Spatial depth perception test certification</li>
+                                <li>Completion of a 30-minute Apex drone telemetry training course</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$16.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Autonomous Drone Obstacle Labeling')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 5 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>5. Medical Scription Syntax Alignment <span class="complexity-badge c-medium">Medium</span></h3>
+                        <p>Parse verbal doctor summaries into highly structural JSON formats using clear international classification guidelines (ICD-10 clinical coding terminology).</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Familiarity with medical concepts or administrative billing pipelines</li>
+                                <li>Nondisclosure agreement (NDA) signed at profile dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$19.50 / hr</div>
+                        <button class="btn" onclick="openApplication('Medical Scription Syntax Alignment')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 6 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>6. Regional Dialect Translation Audit <span class="complexity-badge c-medium">Medium</span></h3>
+                        <p>Assess idiom transformations and direct conversational accuracy when converting conversational French text variations into precise global English.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Native fluid understanding of targeted localized dialects</li>
+                                <li>Demonstrated professional translation background</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$22.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Regional Dialect Translation Audit')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 7 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>7. Python Algorithmic Logic Verification <span class="complexity-badge c-complex">Complex</span></h3>
+                        <p>Review algorithmic programming answers generated by large language models. Write edge-case unit tests to confirm execution speed and clean memory footprints.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Flawless computer science fundamentals (Data Structures & Algorithms)</li>
+                                <li>Verifiable GitHub footprint or competitive coding performance standing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$35.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Python Algorithmic Logic Verification')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 8 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>8. Financial Risk Model Stress Testing <span class="complexity-badge c-complex">Complex</span></h3>
+                        <p>Review complex predictive mathematical sheets. Simulate worst-case macroeconomic factors to evaluate predictive banking asset resilience models.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Advanced educational degree in Quantitative Finance, Math, or Economics</li>
+                                <li>In-depth familiarity with stochastic modeling procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$42.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Financial Risk Model Stress Testing')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 9 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>9. Smart Contract Cryptographic Review <span class="complexity-badge c-complex">Complex</span></h3>
+                        <p>Audit Solidity bytecode structures to discover hidden reentrancy flaws, integer overflow vulnerabilities, or logic traps prior to deployment on public mainnets.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Proven EVM security research or active bug-bounty tracking record</li>
+                                <li>Deep understanding of structural consensus mechanisms</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$55.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Smart Contract Cryptographic Review')">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Task 10 -->
+                <div class="task-card">
+                    <div class="task-main">
+                        <h3>10. Distributed System Architecture Optimization <span class="complexity-badge c-complex">Complex</span></h3>
+                        <p>Examine configuration blueprints for highly massive distributed microservice layouts to eliminate cross-region latency issues and database deadlock states.</p>
+                        <div class="task-reqs">
+                            <strong>Key Requirements:</strong>
+                            <ul>
+                                <li>Extensive experience managing massive high-availability cloud infrastructure</li>
+                                <li>Expert-level specialization in container orchestrations and low-latency network setups</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-rate">$65.00 / hr</div>
+                        <button class="btn" onclick="openApplication('Distributed System Architecture Optimization')">Apply Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Routing Modal -->
+    <div class="modal" id="appModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeApplication()">&times;</button>
+            <h3 id="modalTaskName" style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--accent);">Task Application</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Please transmit your credentials and portfolio parameters to complete this task advertisement handshake.</p>
+            
+            <!-- Option A: Direct Mail -->
+            <div class="app-option-box">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <div>
+                    <h4 style="margin-bottom: 0.25rem;">Option 1: Direct Mail Delivery</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.75rem;">Package your comprehensive professional CV along with explicit references mentioning this task title directly.</p>
+                    <a id="mailLink" href="#" class="btn btn-success" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+                        <i class="fa-solid fa-paper-plane"></i> Send Info to Mail
+                    </a>
+                </div>
+            </div>
+
+            <!-- Option B: Profile Sync -->
+            <div class="app-option-box">
+                <i class="fa-solid fa-id-card-clip"></i>
+                <div>
+                    <h4 style="margin-bottom: 0.25rem;">Option 2: Apex Worker Profile Synchronization</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.75rem;">Instantly push your verified system credentials, historic capability metrics, and saved hardware specs directly to the review board.</p>
+                    <button onclick="triggerProfileSync()" class="btn" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+                        <i class="fa-solid fa-arrows-rotate"></i> Transmit System Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Apex Crowdsourcing Solutions Inc. All rights reserved. Precision algorithms driving human potential at scale.</p>
+    </footer>
+
+    <script>
+        const lockOverlay = document.getElementById('lockOverlay');
+        const appModal = document.getElementById('appModal');
+        const modalTaskName = document.getElementById('modalTaskName');
+        const mailLink = document.getElementById('mailLink');
+
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('regEmail').value;
+            alert(`Profile registered successfully!\nID matched to: ${email}\n\nThe premium marketplace task listings have been unlocked.`);
+            
+            lockOverlay.style.display = 'none';
+            document.getElementById('marketplace').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openApplication(taskName) {
+            modalTaskName.innerText = `Apply: ${taskName}`;
+            
+            const emailSubject = encodeURIComponent(`Apex Application: ${taskName}`);
+            const emailBody = encodeURIComponent(`Hello Apex Solutions Team,\n\nI am submitting my info and portfolio data to apply for the "${taskName}" contract position.\n\nAttached/Linked Credentials:\n[Insert Link to Portfolio/Resume Here]\n\nBest Regards,`);
+            
+            mailLink.href = `mailto:proposals@apexcrowd.com?subject=${emailSubject}&body=${emailBody}`;
+            appModal.style.display = 'flex';
+        }
+
+        function closeApplication() {
+            appModal.style.display = 'none';
+        }
+
+        function triggerProfileSync() {
+            alert("Success! Your internal Apex profile dataset and performance metrics have been securely packaged and transmitted to the project review board.");
+            closeApplication();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == appModal) {
+                closeApplication();
+            }
+        }
+    </script>
+</body>
+</html>
