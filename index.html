@@ -13,14 +13,26 @@
             --accent-glow: #38bdf8;
             --accent-blue: #0284c7;
             --accent-hover: #0369a1;
+            --accent-whatsapp: #25d366;
+            --accent-whatsapp-hover: #128c7e;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
-            --text-dark: #0f172a;
             --border-glow: #334155;
             --tag-simple: #10b981;
             --tag-medium: #f59e0b;
             --tag-complex: #ef4444;
             --warning-red: #f87171;
+        }
+
+        /* Terminal Matrix Theme Variable Overrides */
+        [data-theme="matrix"] {
+            --bg-deep: #020617;
+            --bg-surface: #0f172a;
+            --bg-card: #1e293b;
+            --accent-glow: #22c55e;
+            --accent-blue: #16a34a;
+            --accent-hover: #15803d;
+            --border-glow: #334155;
         }
 
         * {
@@ -34,9 +46,10 @@
             background-color: var(--bg-deep);
             color: var(--text-primary);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Premium Top Navigation */
+        /* Top Navigation Header */
         nav {
             display: flex;
             justify-content: space-between;
@@ -58,7 +71,6 @@
             font-weight: 800;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: var(--text-primary);
         }
 
         .logo-area span {
@@ -68,7 +80,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-right a {
@@ -83,44 +95,47 @@
             color: var(--accent-glow);
         }
 
-        .btn-signup {
-            background: transparent;
-            border: 1px solid var(--accent-glow);
+        .theme-toggle-btn {
+            background: none;
+            border: 1px solid var(--border-glow);
             color: var(--accent-glow);
-            padding: 0.5rem 1.25rem;
-            border-radius: 4px;
+            padding: 0.5rem;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
         }
 
-        .btn-signup:hover {
-            background: rgba(56, 189, 248, 0.1);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-glow);
+            background: rgba(56, 189, 248, 0.05);
         }
 
-        /* Futuristic Hero Section */
+        /* Hero Frame Architecture */
         .hero-banner {
-            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.15), transparent 60%), var(--bg-surface);
-            padding: 4rem 6%;
+            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.1), transparent 60%), var(--bg-surface);
+            padding: 3rem 6%;
             display: flex;
             flex-direction: column;
-            gap: 2.5rem;
+            gap: 2rem;
             border-bottom: 1px solid rgba(51, 65, 85, 0.3);
         }
 
-        .hero-main-flex {
+        .hero-flex-wrapper {
             display: flex;
             align-items: center;
-            gap: 4rem;
+            justify-content: space-between;
+            gap: 2rem;
             width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
@@ -131,11 +146,26 @@
 
         .hero-content p {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             max-width: 800px;
         }
 
-        /* Support Header Subtitle */
+        .hero-graphic-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-display-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+
         .support-info-bar {
             background: rgba(15, 21, 36, 0.5);
             border: 1px solid rgba(51, 65, 85, 0.4);
@@ -153,17 +183,15 @@
             margin-right: 0.4rem;
         }
 
-        /* Premium Industry-Best Onboarding Form Container */
+        /* Profile Onboarding Node Form */
         .registration-container-wrapper {
             width: 100%;
-            max-width: 950px;
             background: linear-gradient(135deg, rgba(23, 32, 54, 0.7) 0%, rgba(15, 21, 36, 0.9) 100%);
             border: 1px solid rgba(56, 189, 248, 0.25);
-            padding: 2rem;
+            padding: 1.75rem;
             border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             position: relative;
-            overflow: hidden;
         }
 
         .registration-container-wrapper::before {
@@ -180,16 +208,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             border-bottom: 1px solid rgba(51, 65, 85, 0.4);
             padding-bottom: 0.75rem;
         }
 
         .form-header-meta h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
+            font-size: 1.15rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -219,13 +244,14 @@
 
         .registration-inline-box {
             display: flex;
+            flex-wrap: wrap;
             gap: 1.25rem;
             align-items: flex-end;
-            width: 100%;
         }
 
         .inline-group {
             flex: 1;
+            min-width: 200px;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -252,7 +278,6 @@
         .inline-input:focus {
             outline: none;
             border-color: var(--accent-glow);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
         }
 
         .btn-submit-inline {
@@ -266,47 +291,27 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            transition: background-color 0.3s, transform 0.1s;
+            transition: background-color 0.3s;
         }
 
         .btn-submit-inline:hover {
             background-color: var(--accent-hover);
         }
 
-        /* Custom Grid Configuration */
+        /* Main Profile Dashboard System */
         .main-container {
-            padding: 4rem 6%;
+            padding: 3rem 6%;
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 1.8rem;
-            background: var(--accent-glow);
-            border-radius: 2px;
-        }
-
-        /* Profile Dashboard Panel styles */
         .profile-dashboard-panel {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
             background: linear-gradient(135deg, rgba(15, 21, 36, 0.8) 0%, rgba(23, 32, 54, 0.5) 100%);
             border: 1px solid rgba(51, 65, 85, 0.5);
-            padding: 2rem;
+            padding: 1.75rem;
             border-radius: 12px;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             align-items: center;
             justify-content: space-between;
         }
@@ -314,21 +319,20 @@
         .profile-meta-card {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         .profile-avatar {
-            width: 64px;
-            height: 64px;
+            width: 60px;
+            height: 60px;
             background: rgba(56, 189, 248, 0.1);
             border: 2px solid var(--accent-glow);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--accent-glow);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
         }
 
         .status-indicator-dot {
@@ -341,21 +345,7 @@
             box-shadow: 0 0 8px #10b981;
         }
 
-        .wallet-badge {
-            margin-top: 0.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-family: monospace;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Circle Progress Widget Architecture */
+        /* SVG Circular Architecture */
         .metrics-circle-container {
             display: flex;
             align-items: center;
@@ -364,8 +354,8 @@
 
         .circle-widget {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
         }
 
         .progress-ring {
@@ -382,41 +372,85 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            color: var(--text-primary);
         }
 
         .metrics-text-side h4 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.25rem;
         }
 
-        .metrics-text-side p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+        /* Live System Terminal Logs Console */
+        .terminal-console-logger {
+            background-color: #020617;
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #38bdf8;
+            margin-bottom: 2.5rem;
+            height: 110px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
         }
 
+        .terminal-line {
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .terminal-timestamp {
+            color: var(--text-secondary);
+            margin-right: 0.5rem;
+        }
+
+        /* Filter Controls */
+        .filter-navigation-tabs {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+            padding-bottom: 0.75rem;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glow);
+            color: var(--text-secondary);
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-glow);
+            color: var(--text-primary);
+        }
+
+        /* Dynamic Grid Layout */
         .marketplace-relative {
             position: relative;
+            min-height: 400px;
         }
 
-        /* Grid Security Blur Shield */
         .market-blur-layer {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(7, 10, 18, 0.7);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 10, 18, 0.75);
             backdrop-filter: blur(8px);
             z-index: 50;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding-top: 100px;
+            padding-top: 80px;
             border-radius: 12px;
             transition: opacity 0.4s ease, visibility 0.4s;
         }
@@ -430,37 +464,29 @@
         .lock-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-glow);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             text-align: center;
-            max-width: 450px;
+            max-width: 420px;
         }
 
-        .lock-card h3 {
-            font-size: 1.3rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Cyber Task Cards */
         .tasks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.75rem;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.5rem;
         }
 
         .task-card {
             background-color: var(--bg-surface);
             border: 1px solid rgba(51, 65, 85, 0.6);
             border-radius: 8px;
-            padding: 1.75rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 360px;
+            min-height: 330px;
             cursor: pointer;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            transition: all 0.25s ease;
         }
 
         .task-card:hover {
@@ -473,15 +499,13 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 0.75rem;
+            gap: 0.5rem;
             margin-bottom: 1rem;
         }
 
         .task-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.3;
         }
 
         .status-tag {
@@ -489,48 +513,35 @@
             font-weight: 800;
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
-            white-space: nowrap;
-            letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-
-        .tag-simple { background: rgba(16, 185, 129, 0.15); color: var(--tag-simple); border: 1px solid rgba(16, 185, 129, 0.3); }
-        .tag-medium { background: rgba(245, 158, 11, 0.15); color: var(--tag-medium); border: 1px solid rgba(245, 158, 11, 0.3); }
-        .tag-complex { background: rgba(239, 68, 68, 0.15); color: var(--tag-complex); border: 1px solid rgba(239, 68, 68, 0.3); }
 
         .requirements-box {
             background: rgba(23, 32, 54, 0.4);
             border: 1px solid rgba(51, 65, 85, 0.4);
-            padding: 1rem;
+            padding: 0.85rem;
             border-radius: 6px;
-            margin-bottom: 0.75rem;
         }
 
         .requirements-box h4 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .requirements-box ul {
-            list-style-type: none;
-        }
-
-        .requirements-box li {
-            font-size: 0.85rem;
-            color: var(--text-primary);
             margin-bottom: 0.4rem;
+        }
+
+        .requirements-box ul { list-style: none; }
+        .requirements-box li {
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
             display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .requirements-box li i {
             color: var(--accent-glow);
             font-size: 0.75rem;
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
         }
 
         .card-footer-metrics {
@@ -539,31 +550,20 @@
             align-items: center;
             border-top: 1px solid rgba(51, 65, 85, 0.4);
             padding-top: 0.75rem;
-            margin-top: auto;
-        }
-
-        .card-pay-methods {
-            display: flex;
-            gap: 0.4rem;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
+            margin-top: 1rem;
         }
 
         .rate-label {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: #34d399;
-            letter-spacing: -0.01em;
         }
 
-        /* Modal UI */
+        /* Modal Overlay Layout */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(7, 10, 18, 0.8);
             backdrop-filter: blur(8px);
             z-index: 1000;
@@ -575,137 +575,58 @@
             background: var(--bg-surface);
             border-radius: 12px;
             width: 100%;
-            max-width: 620px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
+            max-width: 600px;
             border: 1px solid var(--border-glow);
+            position: relative;
         }
 
         .modal-close-btn {
             position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
+            top: 1rem; right: 1rem;
+            background: none; border: none;
+            font-size: 1.5rem; color: var(--text-secondary);
             cursor: pointer;
-            color: var(--text-secondary);
-            transition: color 0.2s;
         }
 
-        .modal-body {
-            padding: 2.5rem;
-        }
-
-        .modal-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .modal-subtitle {
-            font-size: 0.95rem;
-            color: var(--accent-glow);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .handshake-notice {
-            background-color: rgba(2, 132, 199, 0.1);
-            border-left: 4px solid var(--accent-glow);
-            padding: 1rem;
-            font-size: 0.85rem;
-            color: #e2e8f0;
-            border-radius: 0 4px 4px 0;
-            margin-bottom: 1.25rem;
-        }
-
+        .modal-body { padding: 2.25rem; }
+        .modal-title { font-size: 1.5rem; font-weight: 800; }
+        .modal-subtitle { color: var(--accent-glow); font-weight: 600; margin-bottom: 1rem; }
+        
         .qc-warning-box {
-            background-color: rgba(239, 68, 68, 0.08);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background-color: rgba(239, 68, 68, 0.06);
             border-left: 4px solid var(--tag-complex);
-            padding: 1rem;
-            font-size: 0.85rem;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
+            padding: 1rem; font-size: 0.8rem; margin-bottom: 1.25rem;
         }
 
-        .qc-warning-box h5 {
-            color: var(--warning-red);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .qc-warning-box ul {
-            padding-left: 1.1rem;
-            margin-top: 0.4rem;
-            color: #cbd5e1;
-        }
-
-        .qc-warning-box li {
-            margin-bottom: 0.25rem;
-        }
-
-        .procedure-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .procedure-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .procedure-text a {
-            color: var(--accent-glow);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .action-button-stack {
+        .modal-btn-group {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
         }
 
         .modal-btn {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            padding: 0.85rem;
-            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white; 
+            text-decoration: none; 
+            text-align: center;
+            padding: 0.8rem; 
+            border-radius: 6px; 
             font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            font-size: 0.9rem;
-            text-decoration: none;
-            text-transform: uppercase;
+            text-transform: uppercase; 
             letter-spacing: 0.05em;
-            transition: background-color 0.3s;
+            transition: background-color 0.2s;
+            font-size: 0.9rem;
         }
+        
+        .modal-btn-email { background-color: var(--accent-blue); }
+        .modal-btn-email:hover { background-color: var(--accent-hover); }
 
-        .modal-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .btn-caption {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: -0.5rem;
-        }
+        .modal-btn-whatsapp { background-color: var(--accent-whatsapp); }
+        .modal-btn-whatsapp:hover { background-color: var(--accent-whatsapp-hover); }
     </style>
 </head>
 <body>
@@ -713,65 +634,69 @@
     <nav>
         <div class="logo-area">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:var(--accent-glow);"><path d="M12 2L2 22h4l6-12 6 12h4z"/></svg>
-            Apex<span>Crowd</span>
+            Apex<span>Platform</span>
         </div>
         <div class="nav-right">
-            <a href="#lockShield">Operations Panel</a>
-            <a href="#lockShield">Network Node</a>
-            <button class="btn-signup" onclick="document.getElementById('regEmail').focus();">Sign-up</button>
+            <button class="theme-toggle-btn" onclick="toggleSystemTheme()" title="Switch Workspace Theme">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+            <a href="#lockShield">Operations Matrix</a>
         </div>
     </nav>
 
     <header class="hero-banner">
-        <div class="hero-main-flex">
+        <div class="hero-flex-wrapper">
             <div class="hero-content">
-                <h1>Welcome to Apex Network</h1>
-                <p>Apex orchestrates advanced crowdsourced machine learning verification loops and computational validation data pipelines for enterprise execution frameworks.</p>
+                <h1>Advanced Operational Terminal</h1>
+                <p>Deploy secure verification cycles and analytical computations across decentralized networks.</p>
+            </div>
+            <!-- Custom Graphic Integration Node -->
+            <div class="hero-graphic-container">
+                <img src="https://i.imgur.com/vS3Nsh1.png" alt="Apex Network Core Graphic" class="hero-display-img">
             </div>
         </div>
 
         <div class="support-info-bar">
-            <span><i class="fa-solid fa-envelope"></i> Contact Support: operations@apex-network.io</span>
-            <span><i class="fa-solid fa-headset"></i> Customer Care Support Portal Active</span>
+            <span><i class="fa-solid fa-envelope"></i> Core Operations Desk: apextaskingcompany@gmail.com</span>
+            <span><i class="fa-solid fa-phone"></i> Support Signal: +18705490483</span>
+            <span><i class="fa-solid fa-shield-halved"></i> Security Protocol Level 4 Active</span>
         </div>
             
         <div class="registration-container-wrapper">
             <div class="form-header-meta">
-                <h3><i class="fa-solid fa-user-plus" style="color:var(--accent-glow);"></i> Initialize Contractor Account</h3>
+                <h3><i class="fa-solid fa-user-plus" style="color:var(--accent-glow);"></i> Node Initialization Form</h3>
                 <div class="supported-gateways-badges">
-                    <span style="font-size:0.7rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.05em;">Disbursements:</span>
                     <div class="gateway-pill"><i class="fa-brands fa-paypal"></i> PayPal</div>
-                    <div class="gateway-pill"><i class="fa-brands fa-bitcoin"></i> Crypto (USDC/USDT)</div>
+                    <div class="gateway-pill"><i class="fa-brands fa-bitcoin"></i> Web3 (USDC)</div>
                 </div>
             </div>
-            <form class="registration-inline-box" id="registrationForm" onsubmit="unlockMarketplace(event)">
+            <form class="registration-inline-box" id="registrationForm" onsubmit="handleOnboarding(event)">
                 <div class="inline-group">
-                    <label>Email Address</label>
-                    <input type="email" id="regEmail" class="inline-input" placeholder="operator@mail.com" required>
+                    <label>Identity Email</label>
+                    <input type="email" id="regEmail" class="inline-input" placeholder="operator@domain.com" required>
                 </div>
                 <div class="inline-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="regPhone" class="inline-input" placeholder="+1 (555) 019-2831" required>
+                    <label>Routing Phone</label>
+                    <input type="tel" id="regPhone" class="inline-input" placeholder="+1 (555) 000-0000" required>
                 </div>
                 <div class="inline-group">
-                    <label>Security Password</label>
+                    <label>Access Key</label>
                     <input type="password" id="regPassword" class="inline-input" placeholder="••••••••" required minlength="6">
                 </div>
-                <button type="submit" class="btn-submit-inline">Create Account</button>
+                <button type="submit" class="btn-submit-inline">Sync Workspace</button>
             </form>
         </div>
     </header>
 
     <main class="main-container">
 
+        <!-- User Profile Dashboard Grid Section -->
         <div class="profile-dashboard-panel">
             <div class="profile-meta-card">
-                <div class="profile-avatar">
-                    <i class="fa-solid fa-user-gear"></i>
-                </div>
+                <div class="profile-avatar"><i class="fa-solid fa-user-shield"></i></div>
                 <div class="profile-details">
-                    <h3 id="userDisplayEmail">Operator: Guest Node</h3>
-                    <p><span class="status-indicator-dot"></span> System Status: Active</p>
+                    <h3 id="userDisplayEmail">Operator: Unauthenticated Node</h3>
+                    <p><span class="status-indicator-dot"></span> Core System Status: Active</p>
                     <div class="wallet-badge">
                         <i class="fa-brands fa-bitcoin"></i> <span id="walletAddress">0x000...PENDING</span>
                     </div>
@@ -780,232 +705,247 @@
 
             <div class="metrics-circle-container">
                 <div class="circle-widget">
-                    <svg class="progress-ring" width="120" height="120">
-                        <circle class="progress-ring__background" stroke="#172036" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                        <circle class="progress-ring__circle" id="trackerCircle" stroke="#38bdf8" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                    <svg class="progress-ring" width="100" height="100">
+                        <circle class="progress-ring__background" stroke="#172036" stroke-width="6" fill="transparent" r="42" cx="50" cy="50"/>
+                        <circle class="progress-ring__circle" id="trackerCircle" stroke="#38bdf8" stroke-width="6" fill="transparent" r="42" cx="50" cy="50"/>
                     </svg>
                     <div class="circle-percentage" id="circlePercentText">0%</div>
                 </div>
                 <div class="metrics-text-side">
-                    <h4>Daily Operations Threshold</h4>
-                    <p>Tasks Completed: <strong id="completedTasksCount" style="color: var(--accent-glow);">0</strong> / 5</p>
-                    <p>Pending Escrow: <strong id="totalEarnings" style="color: #34d399;">$0.00</strong></p>
+                    <h4>Task Pool Threshold</h4>
+                    <p>Processed: <strong id="completedTasksCount" style="color: var(--accent-glow);">0</strong> / 10 Max</p>
+                    <p>Secured Escrow: <strong id="totalEarnings" style="color: #34d399;">$0.00</strong></p>
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">Tasks Available (Minimum $10.00/hr)</h2>
+        <!-- Real-time Terminal Log Output Container -->
+        <div class="terminal-console-logger" id="terminalLogger">
+            <div class="terminal-line"><span class="terminal-timestamp">[00:00:01]</span> AX_KERNEL: System standby. Ready for execution...</div>
+        </div>
+
+        <!-- Filter Tab Controls -->
+        <div class="filter-navigation-tabs">
+            <button class="filter-btn active" onclick="filterMarketplace('all', this)">All Nodes</button>
+            <button class="filter-btn" onclick="filterMarketplace('simple', this)">Simple</button>
+            <button class="filter-btn" onclick="filterMarketplace('medium', this)">Medium</button>
+            <button class="filter-btn" onclick="filterMarketplace('complex', this)">Complex</button>
+        </div>
 
         <div class="marketplace-relative">
+            <!-- Grid Blur Shield Lock Layer -->
             <div class="market-blur-layer" id="lockShield">
                 <div class="lock-card">
-                    <i class="fa-solid fa-shield-halved" style="font-size:2.5rem; color:var(--accent-glow);"></i>
-                    <h3>Encrypted Data Registry</h3>
-                    <p style="font-size:0.85rem; color:var(--text-secondary); margin: 0.75rem 0 1.5rem;">To protect dataset validation integrity, please register your workspace configuration profile parameters above.</p>
+                    <i class="fa-solid fa-lock" style="font-size:2rem; color:var(--accent-glow); margin-bottom: 0.5rem;"></i>
+                    <h3>Data Streams Locked</h3>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">Initialize your connection profile parameters above to allocate active task arrays.</p>
                 </div>
             </div>
 
-            <div class="tasks-grid">
-                
-                <div class="task-card" onclick="openApplication('1. Basic Prompt-Response Evaluation', 'Requires basic familiarity with LLM outputs and strict adherence to project guidelines. High attention to detail required to spot text generation flaws.')">
-                    <div>
-                        <div class="card-header-flex">
-                            <h3 class="task-title">1. Prompt-Response Evaluation</h3>
-                            <span class="status-tag tag-simple">Simple</span>
-                        </div>
-                        <div class="requirements-box">
-                            <h4>Project Benchmarks</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-square-check"></i> Completion of initial Sandbox assessment</li>
-                                <li><i class="fa-solid fa-square-check"></i> Native fluency in target project language</li>
-                                <li><i class="fa-solid fa-square-check"></i> Strict adherence to style guide constraints</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer-metrics">
-                        <div class="card-pay-methods">
-                            <i class="fa-brands fa-paypal" title="PayPal Active"></i>
-                            <i class="fa-brands fa-bitcoin" title="Crypto Deployable"></i>
-                        </div>
-                        <div class="rate-label">$15.00 / hr</div>
-                    </div>
-                </div>
-
-                <div class="task-card" onclick="openApplication('2. Factuality & Accuracy Verification', 'Must be skilled at rapid search indexing, verifying claims against trusted sources, and writing clear, structured logic justifications.')">
-                    <div>
-                        <div class="card-header-flex">
-                            <h3 class="task-title">2. Factuality & Verification</h3>
-                            <span class="status-tag tag-simple">Simple</span>
-                        </div>
-                        <div class="requirements-box">
-                            <h4>Project Benchmarks</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-square-check"></i> Background in research or fact-checking</li>
-                                <li><i class="fa-solid fa-square-check"></i> Write clear justifications explaining deviations</li>
-                                <li><i class="fa-solid fa-square-check"></i> Spot hallucinations or false assumptions</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer-metrics">
-                        <div class="card-pay-methods">
-                            <i class="fa-brands fa-paypal" title="PayPal Active"></i>
-                            <i class="fa-brands fa-bitcoin" title="Crypto Deployable"></i>
-                        </div>
-                        <div class="rate-label">$17.50 / hr</div>
-                    </div>
-                </div>
-
-                <div class="task-card" onclick="openApplication('3. Multi-Turn Conversation Tracing', 'Evaluate long-form chat logs. Trace context drift across 5+ turns to ensure the model maintains instructions and personality profiles.')">
-                    <div>
-                        <div class="card-header-flex">
-                            <h3 class="task-title">3. Multi-Turn Conversation Tracing</h3>
-                            <span class="status-tag tag-simple">Simple</span>
-                        </div>
-                        <div class="requirements-box">
-                            <h4>Project Benchmarks</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-square-check"></i> Passed advanced logical context screening test</li>
-                                <li><i class="fa-solid fa-square-check"></i> Evaluate model memory across long inputs</li>
-                                <li><i class="fa-solid fa-square-check"></i> Identify subtle conversational deviations</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer-metrics">
-                        <div class="card-pay-methods">
-                            <i class="fa-brands fa-paypal" title="PayPal Active"></i>
-                            <i class="fa-brands fa-bitcoin" title="Crypto Deployable"></i>
-                        </div>
-                        <div class="rate-label">$19.00 / hr</div>
-                    </div>
-                </div>
-
+            <!-- 10 Maximum Programmatic Task Cards Grid -->
+            <div class="tasks-grid" id="tasksDisplayMatrix">
+                <!-- Javascript loads the 10 Dynamic Tasks here -->
             </div>
         </div>
     </main>
 
+    <!-- Application Modal Overlay Window -->
     <div class="modal-overlay" id="appModal">
         <div class="modal-box">
             <button class="modal-close-btn" onclick="closeApplication()">&times;</button>
             <div class="modal-body">
-                <h3 class="modal-title">Task Application</h3>
-                <div class="modal-subtitle" id="targetTaskName">Selected Assignment Node</div>
+                <h3 class="modal-title">Task Pipeline Allocation</h3>
+                <div class="modal-subtitle" id="targetTaskName">Pipeline Node</div>
                 
-                <div class="handshake-notice">
-                    Disbursement routes: <strong>PayPal</strong> and <strong>Cryptocurrency Web3 wallets</strong>.
-                </div>
-
                 <div class="qc-warning-box">
-                    <h5><i class="fa-solid fa-triangle-exclamation"></i> CRITICAL: Non-Payment & Rejection Warnings</h5>
-                    <p>The evaluation matrix operates on a strict zero-tolerance threshold. Submissions that trigger any of the following parameters will cause <strong>automatic assignment rejection, zero pay, and permanent registry ban:</strong></p>
-                    <ul>
-                        <li><strong>AI-Generated Contamination:</strong> Using external LLMs to write justifications.</li>
-                        <li><strong>Plagiarism & Copying:</strong> Copying matching data or samples across multi-turn setups.</li>
-                        <li><strong>Failing Attention Checks:</strong> Missing hidden quality verification prompts embedded within task pools.</li>
-                    </ul>
+                    <strong style="color:var(--warning-red); display:block; margin-bottom:0.25rem;"><i class="fa-solid fa-triangle-exclamation"></i> QA Validation Matrix Notice</strong>
+                    Automated baseline tracking applies to this task array. Multi-device usage or synthetic justification injection triggers instantaneous block responses.
                 </div>
 
-                <div class="procedure-title">Application Procedure</div>
-                <div class="procedure-text">
-                    After opening a task of interest, applicants must submit their CV directly to the operations desk via email at <a href="mailto:operations@apex-network.io" id="mailAnchor">operations@apex-network.io</a>. Ensure the submission references the selected assignment path.
-                    <br><br>
-                    <strong>Requirements for project entry:</strong>
-                    <span id="targetTaskReqs" style="display:block; margin-top:0.5rem; color:var(--text-primary); font-style:italic;">Loading criteria...</span>
-                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem;" id="targetTaskReqs">Loading specifications...</p>
 
-                <div class="action-button-stack">
-                    <a href="mailto:operations@apex-network.io" class="modal-btn" id="directMailBtn">Submit CV via Email</a>
-                    <div class="btn-caption">Direct delivery to operations portal</div>
+                <div class="modal-btn-group">
+                    <a href="mailto:apextaskingcompany@gmail.com" class="modal-btn modal-btn-email" id="directMailBtn">
+                        <i class="fa-solid fa-envelope"></i> Submit CV to Operations Email
+                    </a>
+                    <a href="https://wa.me/18705490483" target="_blank" class="modal-btn modal-btn-whatsapp" id="directWhatsappBtn">
+                        <i class="fa-brands fa-whatsapp"></i> Secure WhatsApp Channel
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const shield = document.getElementById('lockShield');
-        const modal = document.getElementById('appModal');
-        const taskNameHeading = document.getElementById('targetTaskName');
-        const taskReqsPlaceholder = document.getElementById('targetTaskReqs');
-        const mailAnchor = document.getElementById('mailAnchor');
-        const directMailBtn = document.getElementById('directMailBtn');
+        // Data Array of exactly 10 Maximum Tasks scaling up to $65.00/hr max pay
+        const taskDatabase = [
+            { id: 1, type: "simple", title: "Basic Prompt Tuning Evaluation", rate: 15.00, req: "Analyze baseline chat completions for structured parameters." },
+            { id: 2, type: "simple", title: "Factuality Proof Checking", rate: 18.50, req: "Cross-reference factual assertions against verified tracking documents." },
+            { id: 3, type: "simple", title: "Conversational Sentiment Tracing", rate: 22.00, req: "Identify tracking shifts inside dual-operator alignment channels." },
+            { id: 4, type: "medium", title: "Multimodal Asset Labeling", rate: 28.50, req: "Evaluate graphical metadata responses for accurate visual descriptive tokens." },
+            { id: 5, type: "medium", title: "Hallucination Delta Analysis", rate: 34.00, req: "Calculate deviations within logical constraints across long text frameworks." },
+            { id: 6, type: "medium", title: "Constraint Optimization Auditing", rate: 39.50, req: "Verify systems formatting output structures match schema instructions." },
+            { id: 7, type: "complex", title: "Mathematical Proof Engineering", rate: 45.00, req: "Debug mathematical computation steps within system output data." },
+            { id: 8, type: "complex", title: "Python Code Vector Synthesis", rate: 52.00, req: "Trace syntax validation constraints inside target coding environments." },
+            { id: 9, type: "complex", title: "Reasoning Tree Optimization", rate: 58.50, req: "Assess execution graphs for complex logical verification logic." },
+            { id: 10, type: "complex", title: "Expert Domain Hyper-Tuning", rate: 65.00, req: "Maximum Tier Evaluation. Requires advanced analytical background and verification proofs." }
+        ];
 
-        // Global Dashboard Tracking States
+        // Global State Parameters
         let completedTasks = 0;
         let balanceEarned = 0.00;
-        const targetGoal = 5;
+        const maxTasks = 10;
 
-        // SVG Circle Initialization Setup
+        // SVG Circular Elements Setup
         const circle = document.getElementById('trackerCircle');
         const radius = circle.r.baseVal.value;
         const circumference = radius * 2 * Math.PI;
-
         circle.style.strokeDasharray = `${circumference} ${circumference}`;
         circle.style.strokeDashoffset = circumference;
 
-        function setProgress(percent) {
-            const offset = circumference - (percent / 100) * circumference;
-            circle.style.strokeDashoffset = offset;
-            document.getElementById('circlePercentText').innerText = `${Math.min(100, Math.round(percent))}%`;
+        // Core Initialization Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTaskGridElements();
+            loadStateFromLocalStorage();
+            pushTerminalLog("AX_KERNEL: Hardware abstraction layers synced successfully.");
+        });
+
+        function renderTaskGridElements() {
+            const container = document.getElementById('tasksDisplayMatrix');
+            container.innerHTML = "";
+            
+            taskDatabase.forEach(task => {
+                const card = document.createElement('div');
+                card.className = `task-card`;
+                card.setAttribute('data-difficulty', task.type);
+                card.onclick = () => launchTaskApplication(task.title, task.req, task.rate);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="card-header-flex">
+                            <h3 class="task-title">${task.title}</h3>
+                            <span class="status-tag tag-${task.type}">${task.type}</span>
+                        </div>
+                        <div class="requirements-box">
+                            <h4>Pipeline Prerequisites</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-microchip"></i> Assessment Pool Active</li>
+                                <li><i class="fa-solid fa-shield"></i> Target Rate Certified</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer-metrics">
+                        <span style="font-size:0.75rem; color:var(--text-secondary);"><i class="fa-solid fa-wallet"></i> Instant Routing</span>
+                        <div class="rate-label">$${task.rate.toFixed(2)} / hr</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
         }
 
-        // Handle Dynamic Onboarding Form Submission
-        function unlockMarketplace(e) {
+        // Live Dynamic Logger Stream Component
+        function pushTerminalLog(message) {
+            const logger = document.getElementById('terminalLogger');
+            const timestamp = new Date().toTimeString().split(' ')[0];
+            const logLine = document.createElement('div');
+            logLine.className = "terminal-line";
+            logLine.innerHTML = `<span class="terminal-timestamp">[${timestamp}]</span> ${message}`;
+            logger.appendChild(logLine);
+            logger.scrollTop = logger.scrollHeight;
+        }
+
+        // Interactive Filtering Mechanics
+        function filterMarketplace(type, element) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            
+            document.querySelectorAll('.task-card').forEach(card => {
+                if (type === 'all' || card.getAttribute('data-difficulty') === type) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+            pushTerminalLog(`MARKET: Array filter rearranged to source indices [${type.toUpperCase()}].`);
+        }
+
+        // State Synchronizations (localStorage)
+        function updateUIMetrics() {
+            document.getElementById('completedTasksCount').innerText = completedTasks;
+            document.getElementById('totalEarnings').innerText = `$${balanceEarned.toFixed(2)}`;
+            
+            const percentage = (completedTasks / maxTasks) * 100;
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+            document.getElementById('circlePercentText').innerText = `${Math.round(percentage)}%`;
+        }
+
+        function saveStateToLocalStorage() {
+            localStorage.setItem('apex_completedTasks', completedTasks);
+            localStorage.setItem('apex_balanceEarned', balanceEarned);
+        }
+
+        function loadStateFromLocalStorage() {
+            if (localStorage.getItem('apex_completedTasks')) {
+                completedTasks = parseInt(localStorage.getItem('apex_completedTasks'));
+                balanceEarned = parseFloat(localStorage.getItem('apex_balanceEarned'));
+                const storedEmail = localStorage.getItem('apex_userEmail') || "Verified Operator Node";
+                
+                document.getElementById('lockShield').classList.add('hidden');
+                document.getElementById('userDisplayEmail').innerText = `Operator: ${storedEmail}`;
+                document.getElementById('walletAddress').innerText = `0x${Math.random().toString(16).substr(2, 6).toUpperCase()}...Saved`;
+                updateUIMetrics();
+            }
+        }
+
+        // Actions & Interactive Flows
+        function handleOnboarding(e) {
             e.preventDefault();
+            const email = document.getElementById('regEmail').value;
             
-            const userEmail = document.getElementById('regEmail').value;
-            
-            // Smoothly remove lock shield
-            shield.classList.add('hidden');
-            
-            // Re-render Profile Panel details
-            document.getElementById('userDisplayEmail').innerText = `Operator: ${userEmail}`;
+            localStorage.setItem('apex_userEmail', email);
+            document.getElementById('lockShield').classList.add('hidden');
+            document.getElementById('userDisplayEmail').innerText = `Operator: ${email}`;
             
             const randomHex = Math.random().toString(16).substr(2, 6).toUpperCase();
             document.getElementById('walletAddress').innerText = `0x${randomHex}...Web3`;
+            
+            pushTerminalLog("SYSTEM: Handshake initialized for node profile [" + email + "]. Data streams clear.");
+            updateUIMetrics();
         }
 
-        // Open Modal and Simulate Progress Tracking Metrics
-        function openApplication(taskTitle, requirementsString) {
-            taskNameHeading.innerText = taskTitle;
-            taskReqsPlaceholder.innerText = requirementsString;
-            
-            let payRate = 15.00;
-            if(taskTitle.includes("Factuality")) payRate = 17.50;
-            if(taskTitle.includes("Multi-Turn")) payRate = 19.00;
-
-            const subject = encodeURIComponent(`Application for: ${taskTitle}`);
-            const body = encodeURIComponent(`Hello Apex Operations Team,\n\nI am interested in applying for the following task: ${taskTitle}.\n\nPlease find my CV attached.\n\nBest Regards.`);
-            const URLString = `mailto:operations@apex-network.io?subject=${subject}&body=${body}`;
-            
-            mailAnchor.href = URLString;
-            directMailBtn.href = URLString;
-            
-            // Execute circle progress calculation increments
-            simulateTaskCompletion(payRate);
-            
-            modal.style.display = 'flex';
-        }
-
-        function simulateTaskCompletion(payRate) {
-            if (completedTasks < targetGoal) {
+        function launchTaskApplication(title, textReq, rate) {
+            if (completedTasks < maxTasks) {
                 completedTasks++;
-                balanceEarned += payRate;
+                balanceEarned += rate;
                 
-                document.getElementById('completedTasksCount').innerText = completedTasks;
-                document.getElementById('totalEarnings').innerText = `$${balanceEarned.toFixed(2)}`;
-                
-                const currentPercentage = (completedTasks / targetGoal) * 100;
-                setProgress(currentPercentage);
+                updateUIMetrics();
+                saveStateToLocalStorage();
+                pushTerminalLog("ESCROW: Allocated metrics node to array link. Balance entry: +$" + rate.toFixed(2));
+            } else {
+                pushTerminalLog("WARN: Operational threshold maximum achieved [10/10]. Reset cache to cycle.");
             }
+
+            document.getElementById('targetTaskName').innerText = title;
+            document.getElementById('targetTaskReqs').innerText = textReq;
+            
+            const textBody = "Hello, I am interested in applying for the task profile: " + title + ". Please find my credentials linked.";
+            const subject = encodeURIComponent("Application Stream: " + title);
+            const body = encodeURIComponent(textBody);
+            
+            document.getElementById('directMailBtn').href = "mailto:apextaskingcompany@gmail.com?subject=" + subject + "&body=" + body;
+            document.getElementById('directWhatsappBtn').href = "https://wa.me/18705490483?text=" + encodeURIComponent("Hello, I am inquiring about the task payload allocation: " + title);
+            
+            document.getElementById('appModal').style.display = 'flex';
         }
 
-        function closeApplication() {
-            modal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeApplication();
-            }
+        function closeApplication() { document.getElementById('appModal').style.display = 'none'; }
+        
+        function toggleSystemTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'matrix' ? 'default' : 'matrix';
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            pushTerminalLog("THEME: Matrix color space remapped to [" + targetTheme.toUpperCase() + "].");
         }
     </script>
 </body>
