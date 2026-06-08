@@ -3,950 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Advanced Operations Terminal</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Apex Tasking Company - Operations Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* Core Theme Variables */
         :root {
-            --bg-deep: #070a12;
-            --bg-surface: #0f1524;
-            --bg-card: #172036;
-            --accent-glow: #38bdf8;
-            --accent-blue: #0284c7;
-            --accent-hover: #0369a1;
-            --accent-whatsapp: #25d366;
-            --accent-whatsapp-hover: #128c7e;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-glow: #334155;
-            --tag-simple: #10b981;
-            --tag-medium: #f59e0b;
-            --tag-complex: #ef4444;
-            --warning-red: #f87171;
+            --bg-dark: #0a0f1c;
+            --bg-panel: #111827;
+            --accent-glow: #0284c7;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-whatsapp: #25D366;
+            --accent-whatsapp-hover: #128C7E;
+            --border-color: #1f2937;
         }
 
-        /* Terminal Matrix Theme Variable Overrides */
-        [data-theme="matrix"] {
-            --bg-deep: #020617;
-            --bg-surface: #0f172a;
-            --bg-card: #1e293b;
-            --accent-glow: #22c55e;
-            --accent-blue: #16a34a;
-            --accent-hover: #15803d;
-            --border-glow: #334155;
-        }
-
+        /* Global Reset */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-deep);
+            background-color: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* Top Navigation Header */
-        nav {
+        /* Header & Navigation */
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 6%;
-            background-color: rgba(7, 10, 18, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.4rem;
-            font-weight: 800;
+        header h1 {
+            color: var(--accent-glow);
+            font-size: 2.2rem;
             letter-spacing: 0.05em;
-            text-transform: uppercase;
         }
 
-        .logo-area span {
-            color: var(--accent-glow);
-        }
-
-        .nav-right {
+        .payment-methods {
             display: flex;
-            align-items: center;
             gap: 1.5rem;
-        }
-
-        .nav-right a {
-            text-decoration: none;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
         }
 
-        .nav-right a:hover {
-            color: var(--accent-glow);
-        }
-
-        .theme-toggle-btn {
-            background: none;
-            border: 1px solid var(--border-glow);
-            color: var(--accent-glow);
-            padding: 0.5rem;
-            border-radius: 6px;
+        .payment-methods i:hover {
+            color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: color 0.3s ease;
         }
 
-        .theme-toggle-btn:hover {
-            border-color: var(--accent-glow);
-            background: rgba(56, 189, 248, 0.05);
-        }
-
-        /* Hero Frame Architecture */
-        .hero-banner {
-            background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.1), transparent 60%), var(--bg-surface);
-            padding: 3rem 6%;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.3);
-        }
-
-        .hero-flex-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
+        /* Terminal Image Display */
+        .terminal-display {
             width: 100%;
-            flex-wrap: wrap;
-        }
-
-        .hero-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-content h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            max-width: 800px;
-        }
-
-        .hero-graphic-container {
-            flex: 1;
-            min-width: 300px;
-            max-width: 450px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-display-img {
-            width: 100%;
-            height: auto;
+            max-height: 350px;
+            object-fit: cover;
             border-radius: 8px;
-            border: 1px solid var(--border-glow);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.15);
+            display: block;
         }
 
-        .support-info-bar {
-            background: rgba(15, 21, 36, 0.5);
-            border: 1px solid rgba(51, 65, 85, 0.4);
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
+        /* Task Marketplace Grid */
+        .marketplace-relative {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
-            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
-        .support-info-bar span i {
-            color: var(--accent-glow);
-            margin-right: 0.4rem;
-        }
-
-        /* Profile Onboarding Node Form */
-        .registration-container-wrapper {
-            width: 100%;
-            background: linear-gradient(135deg, rgba(23, 32, 54, 0.7) 0%, rgba(15, 21, 36, 0.9) 100%);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+        .task-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             padding: 1.75rem;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
+            overflow: hidden;
         }
 
-        .registration-container-wrapper::before {
+        .task-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--accent-glow);
-        }
-
-        .form-header-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.25rem;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
-            padding-bottom: 0.75rem;
-        }
-
-        .form-header-meta h3 {
-            font-size: 1.15rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .supported-gateways-badges {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .gateway-pill {
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .gateway-pill i.fa-paypal { color: #00b2ff; }
-        .gateway-pill i.fa-bitcoin { color: #f7931a; }
-
-        .registration-inline-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.25rem;
-            align-items: flex-end;
-        }
-
-        .inline-group {
-            flex: 1;
-            min-width: 200px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .inline-group label {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .inline-input {
-            background: var(--bg-deep);
-            border: 1px solid var(--border-glow);
-            color: var(--text-primary);
-            padding: 0.75rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .inline-input:focus {
-            outline: none;
-            border-color: var(--accent-glow);
-        }
-
-        .btn-submit-inline {
-            background-color: var(--accent-blue);
-            color: var(--text-primary);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: background-color 0.3s;
-        }
-
-        .btn-submit-inline:hover {
-            background-color: var(--accent-hover);
-        }
-
-        /* Main Profile Dashboard System */
-        .main-container {
-            padding: 3rem 6%;
-        }
-
-        .profile-dashboard-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            background: linear-gradient(135deg, rgba(15, 21, 36, 0.8) 0%, rgba(23, 32, 54, 0.5) 100%);
-            border: 1px solid rgba(51, 65, 85, 0.5);
-            padding: 1.75rem;
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .profile-meta-card {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .profile-avatar {
-            width: 60px;
-            height: 60px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 2px solid var(--accent-glow);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            color: var(--accent-glow);
-        }
-
-        .status-indicator-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            margin-right: 0.2rem;
-            box-shadow: 0 0 8px #10b981;
-        }
-
-        /* SVG Circular Architecture */
-        .metrics-circle-container {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .circle-widget {
-            position: relative;
-            width: 100px;
-            height: 100px;
-        }
-
-        .progress-ring {
-            transform: rotate(-90deg);
-        }
-
-        .progress-ring__circle {
-            transition: stroke-dashoffset 0.35s ease-in-out;
-            transform-origin: 50% 50%;
-        }
-
-        .circle-percentage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.15rem;
-            font-weight: 800;
-        }
-
-        .metrics-text-side h4 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
-
-        /* Live System Terminal Logs Console */
-        .terminal-console-logger {
-            background-color: #020617;
-            border: 1px solid var(--border-glow);
-            border-radius: 8px;
-            padding: 1rem;
-            font-family: monospace;
-            font-size: 0.8rem;
-            color: #38bdf8;
-            margin-bottom: 2.5rem;
-            height: 110px;
-            overflow-y: auto;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
-        }
-
-        .terminal-line {
-            margin-bottom: 0.25rem;
-            line-height: 1.4;
-        }
-
-        .terminal-timestamp {
-            color: var(--text-secondary);
-            margin-right: 0.5rem;
-        }
-
-        /* Filter Controls */
-        .filter-navigation-tabs {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
-            padding-bottom: 0.75rem;
-        }
-
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-glow);
-            color: var(--text-secondary);
-            padding: 0.4rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: var(--accent-glow);
-            color: var(--text-primary);
-        }
-
-        /* Dynamic Grid Layout */
-        .marketplace-relative {
-            position: relative;
-            min-height: 400px;
-        }
-
-        .market-blur-layer {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(7, 10, 18, 0.75);
-            backdrop-filter: blur(8px);
-            z-index: 50;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 80px;
-            border-radius: 12px;
-            transition: opacity 0.4s ease, visibility 0.4s;
-        }
-
-        .market-blur-layer.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .lock-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glow);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 420px;
-        }
-
-        .tasks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .task-card {
-            background-color: var(--bg-surface);
-            border: 1px solid rgba(51, 65, 85, 0.6);
-            border-radius: 8px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 330px;
-            cursor: pointer;
-            transition: all 0.25s ease;
+            background-color: var(--accent-glow);
         }
 
         .task-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             border-color: var(--accent-glow);
-            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.1);
         }
 
-        .card-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .task-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .status-tag {
-            font-size: 0.65rem;
+        .task-price {
+            font-size: 1.8rem;
+            color: #10b981;
             font-weight: 800;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            text-transform: uppercase;
+            margin: 1.2rem 0;
         }
 
-        .requirements-box {
-            background: rgba(23, 32, 54, 0.4);
-            border: 1px solid rgba(51, 65, 85, 0.4);
-            padding: 0.85rem;
+        /* Application Protocol & Massive WhatsApp Button */
+        .application-cta-panel {
+            margin-top: 3.5rem;
+            background: linear-gradient(135deg, rgba(15, 21, 36, 0.9) 0%, rgba(2, 132, 199, 0.1) 100%);
+            border: 1px solid var(--accent-glow);
+            border-radius: 12px;
+            padding: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.15);
+        }
+
+        .cta-content {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .cta-content h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .cta-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .apply-steps {
+            list-style-position: inside;
+            color: var(--text-primary);
+            list-style-type: none;
+        }
+
+        .apply-steps li {
+            margin-bottom: 0.85rem;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 0.85rem 1.25rem;
             border-radius: 6px;
+            border-left: 4px solid var(--accent-glow);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .requirements-box h4 {
+        .apply-steps li i {
+            color: var(--accent-glow);
+            font-size: 1.1rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            min-width: 300px;
+            flex: 0.5;
+        }
+
+        .massive-whatsapp-btn {
+            background-color: var(--accent-whatsapp);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 800;
+            padding: 1.25rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .massive-whatsapp-btn:hover {
+            background-color: var(--accent-whatsapp-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .massive-whatsapp-btn i {
+            font-size: 2rem;
+        }
+
+        .secure-tag {
             font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            margin-bottom: 0.4rem;
-        }
-
-        .requirements-box ul { list-style: none; }
-        .requirements-box li {
-            font-size: 0.8rem;
-            margin-bottom: 0.3rem;
-            display: flex;
-            gap: 0.4rem;
-        }
-
-        .requirements-box li i {
-            color: var(--accent-glow);
-            font-size: 0.75rem;
-            margin-top: 0.2rem;
-        }
-
-        .card-footer-metrics {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(51, 65, 85, 0.4);
-            padding-top: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .rate-label {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #34d399;
-        }
-
-        /* Modal Overlay Layout */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(7, 10, 18, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-box {
-            background: var(--bg-surface);
-            border-radius: 12px;
-            width: 100%;
-            max-width: 600px;
-            border: 1px solid var(--border-glow);
-            position: relative;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            background: none; border: none;
-            font-size: 1.5rem; color: var(--text-secondary);
-            cursor: pointer;
-        }
-
-        .modal-body { padding: 2.25rem; }
-        .modal-title { font-size: 1.5rem; font-weight: 800; }
-        .modal-subtitle { color: var(--accent-glow); font-weight: 600; margin-bottom: 1rem; }
-        
-        .qc-warning-box {
-            background-color: rgba(239, 68, 68, 0.06);
-            border-left: 4px solid var(--tag-complex);
-            padding: 1rem; font-size: 0.8rem; margin-bottom: 1.25rem;
-        }
-
-        .modal-btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .modal-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white; 
-            text-decoration: none; 
-            text-align: center;
-            padding: 0.8rem; 
-            border-radius: 6px; 
-            font-weight: 700;
-            text-transform: uppercase; 
             letter-spacing: 0.05em;
-            transition: background-color 0.2s;
-            font-size: 0.9rem;
+            font-weight: 600;
         }
-        
-        .modal-btn-email { background-color: var(--accent-blue); }
-        .modal-btn-email:hover { background-color: var(--accent-hover); }
 
-        .modal-btn-whatsapp { background-color: var(--accent-whatsapp); }
-        .modal-btn-whatsapp:hover { background-color: var(--accent-whatsapp-hover); }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .application-cta-panel {
+                flex-direction: column;
+            }
+            .cta-actions {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-area">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:var(--accent-glow);"><path d="M12 2L2 22h4l6-12 6 12h4z"/></svg>
-            Apex<span>Platform</span>
-        </div>
-        <div class="nav-right">
-            <button class="theme-toggle-btn" onclick="toggleSystemTheme()" title="Switch Workspace Theme">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
-            <a href="#lockShield">Operations Matrix</a>
-        </div>
-    </nav>
-
-    <header class="hero-banner">
-        <div class="hero-flex-wrapper">
-            <div class="hero-content">
-                <h1>Advanced Operational Terminal</h1>
-                <p>Deploy secure verification cycles and analytical computations across decentralized networks.</p>
-            </div>
-            <!-- Custom Graphic Integration Node -->
-            <div class="hero-graphic-container">
-                <img src="https://i.imgur.com/vS3Nsh1.png" alt="Apex Network Core Graphic" class="hero-display-img">
-            </div>
-        </div>
-
-        <div class="support-info-bar">
-            <span><i class="fa-solid fa-envelope"></i> Core Operations Desk: apextaskingcompany@gmail.com</span>
-            <span><i class="fa-solid fa-phone"></i> Support Signal: +18705490483</span>
-            <span><i class="fa-solid fa-shield-halved"></i> Security Protocol Level 4 Active</span>
-        </div>
-            
-        <div class="registration-container-wrapper">
-            <div class="form-header-meta">
-                <h3><i class="fa-solid fa-user-plus" style="color:var(--accent-glow);"></i> Node Initialization Form</h3>
-                <div class="supported-gateways-badges">
-                    <div class="gateway-pill"><i class="fa-brands fa-paypal"></i> PayPal</div>
-                    <div class="gateway-pill"><i class="fa-brands fa-bitcoin"></i> Web3 (USDC)</div>
-                </div>
-            </div>
-            <form class="registration-inline-box" id="registrationForm" onsubmit="handleOnboarding(event)">
-                <div class="inline-group">
-                    <label>Identity Email</label>
-                    <input type="email" id="regEmail" class="inline-input" placeholder="operator@domain.com" required>
-                </div>
-                <div class="inline-group">
-                    <label>Routing Phone</label>
-                    <input type="tel" id="regPhone" class="inline-input" placeholder="+1 (555) 000-0000" required>
-                </div>
-                <div class="inline-group">
-                    <label>Access Key</label>
-                    <input type="password" id="regPassword" class="inline-input" placeholder="••••••••" required minlength="6">
-                </div>
-                <button type="submit" class="btn-submit-inline">Sync Workspace</button>
-            </form>
+    <header>
+        <h1><i class="fa-solid fa-layer-group"></i> Apex Tasking Company</h1>
+        <div class="payment-methods">
+            <i class="fa-brands fa-paypal fa-2x" title="PayPal Routing Available"></i>
+            <i class="fa-brands fa-bitcoin fa-2x" title="Cryptocurrency Escrow Available"></i>
         </div>
     </header>
 
-    <main class="main-container">
-
-        <!-- User Profile Dashboard Grid Section -->
-        <div class="profile-dashboard-panel">
-            <div class="profile-meta-card">
-                <div class="profile-avatar"><i class="fa-solid fa-user-shield"></i></div>
-                <div class="profile-details">
-                    <h3 id="userDisplayEmail">Operator: Unauthenticated Node</h3>
-                    <p><span class="status-indicator-dot"></span> Core System Status: Active</p>
-                    <div class="wallet-badge">
-                        <i class="fa-brands fa-bitcoin"></i> <span id="walletAddress">0x000...PENDING</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="metrics-circle-container">
-                <div class="circle-widget">
-                    <svg class="progress-ring" width="100" height="100">
-                        <circle class="progress-ring__background" stroke="#172036" stroke-width="6" fill="transparent" r="42" cx="50" cy="50"/>
-                        <circle class="progress-ring__circle" id="trackerCircle" stroke="#38bdf8" stroke-width="6" fill="transparent" r="42" cx="50" cy="50"/>
-                    </svg>
-                    <div class="circle-percentage" id="circlePercentText">0%</div>
-                </div>
-                <div class="metrics-text-side">
-                    <h4>Task Pool Threshold</h4>
-                    <p>Processed: <strong id="completedTasksCount" style="color: var(--accent-glow);">0</strong> / 10 Max</p>
-                    <p>Secured Escrow: <strong id="totalEarnings" style="color: #34d399;">$0.00</strong></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Real-time Terminal Log Output Container -->
-        <div class="terminal-console-logger" id="terminalLogger">
-            <div class="terminal-line"><span class="terminal-timestamp">[00:00:01]</span> AX_KERNEL: System standby. Ready for execution...</div>
-        </div>
-
-        <!-- Filter Tab Controls -->
-        <div class="filter-navigation-tabs">
-            <button class="filter-btn active" onclick="filterMarketplace('all', this)">All Nodes</button>
-            <button class="filter-btn" onclick="filterMarketplace('simple', this)">Simple</button>
-            <button class="filter-btn" onclick="filterMarketplace('medium', this)">Medium</button>
-            <button class="filter-btn" onclick="filterMarketplace('complex', this)">Complex</button>
-        </div>
+    <main>
+        <img src="https://i.imgur.com/kl0KbtB.png" alt="Network Terminal Dashboard" class="terminal-display">
 
         <div class="marketplace-relative">
-            <!-- Grid Blur Shield Lock Layer -->
-            <div class="market-blur-layer" id="lockShield">
-                <div class="lock-card">
-                    <i class="fa-solid fa-lock" style="font-size:2rem; color:var(--accent-glow); margin-bottom: 0.5rem;"></i>
-                    <h3>Data Streams Locked</h3>
-                    <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">Initialize your connection profile parameters above to allocate active task arrays.</p>
-                </div>
+            <div class="task-card">
+                <h3>RLHF Model Training</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Evaluate and rank large language model outputs for logical consistency and safety compliance.</p>
+                <div class="task-price">$65.00 / hr</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);"><i class="fa-solid fa-clock"></i> Est. Duration: 2 hours</p>
+            </div>
+            
+            <div class="task-card">
+                <h3>Computer Vision Annotation</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Apply tight bounding boxes and semantic segmentation to autonomous driving datasets.</p>
+                <div class="task-price">$45.00 / hr</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);"><i class="fa-solid fa-clock"></i> Est. Duration: 4 hours</p>
             </div>
 
-            <!-- 10 Maximum Programmatic Task Cards Grid -->
-            <div class="tasks-grid" id="tasksDisplayMatrix">
-                <!-- Javascript loads the 10 Dynamic Tasks here -->
+            <div class="task-card">
+                <h3>Audio Data Transcription</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Transcribe complex multi-speaker audio snippets maintaining a 98% quality assurance baseline.</p>
+                <div class="task-price">$30.00 / hr</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);"><i class="fa-solid fa-clock"></i> Est. Duration: 1.5 hours</p>
+            </div>
+        </div>
+
+        <div class="application-cta-panel">
+            <div class="cta-content">
+                <h2><i class="fa-solid fa-file-contract" style="color: var(--accent-glow);"></i> Official Application Protocol</h2>
+                <p>To acquire task clearance and secure your escrow routing, all prospective operators must complete manual verification. Please follow the strict guidelines below:</p>
+                <ul class="apply-steps">
+                    <li>
+                        <i class="fa-solid fa-1"></i> 
+                        Sync your profile using the Node Initialization Form above.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-2"></i> 
+                        Identify your targeted operations tier from the Operations Matrix.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-3"></i> 
+                        <span><strong>Email your updated CV/Resume</strong> directly to our operations desk at: <a href="mailto:apextaskingcompany@gmail.com" style="color:var(--accent-glow); text-decoration: none; font-weight: bold;">apextaskingcompany@gmail.com</a></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="cta-actions">
+                <a href="https://wa.me/18705490483" target="_blank" class="massive-whatsapp-btn">
+                    <i class="fa-brands fa-whatsapp"></i> Initiate WhatsApp Sync
+                </a>
+                <span class="secure-tag"><i class="fa-solid fa-lock"></i> End-to-End Encrypted Channel</span>
             </div>
         </div>
     </main>
 
-    <!-- Application Modal Overlay Window -->
-    <div class="modal-overlay" id="appModal">
-        <div class="modal-box">
-            <button class="modal-close-btn" onclick="closeApplication()">&times;</button>
-            <div class="modal-body">
-                <h3 class="modal-title">Task Pipeline Allocation</h3>
-                <div class="modal-subtitle" id="targetTaskName">Pipeline Node</div>
-                
-                <div class="qc-warning-box">
-                    <strong style="color:var(--warning-red); display:block; margin-bottom:0.25rem;"><i class="fa-solid fa-triangle-exclamation"></i> QA Validation Matrix Notice</strong>
-                    Automated baseline tracking applies to this task array. Multi-device usage or synthetic justification injection triggers instantaneous block responses.
-                </div>
-
-                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem;" id="targetTaskReqs">Loading specifications...</p>
-
-                <div class="modal-btn-group">
-                    <a href="mailto:apextaskingcompany@gmail.com" class="modal-btn modal-btn-email" id="directMailBtn">
-                        <i class="fa-solid fa-envelope"></i> Submit CV to Operations Email
-                    </a>
-                    <a href="https://wa.me/18705490483" target="_blank" class="modal-btn modal-btn-whatsapp" id="directWhatsappBtn">
-                        <i class="fa-brands fa-whatsapp"></i> Secure WhatsApp Channel
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Data Array of exactly 10 Maximum Tasks scaling up to $65.00/hr max pay
-        const taskDatabase = [
-            { id: 1, type: "simple", title: "Basic Prompt Tuning Evaluation", rate: 15.00, req: "Analyze baseline chat completions for structured parameters." },
-            { id: 2, type: "simple", title: "Factuality Proof Checking", rate: 18.50, req: "Cross-reference factual assertions against verified tracking documents." },
-            { id: 3, type: "simple", title: "Conversational Sentiment Tracing", rate: 22.00, req: "Identify tracking shifts inside dual-operator alignment channels." },
-            { id: 4, type: "medium", title: "Multimodal Asset Labeling", rate: 28.50, req: "Evaluate graphical metadata responses for accurate visual descriptive tokens." },
-            { id: 5, type: "medium", title: "Hallucination Delta Analysis", rate: 34.00, req: "Calculate deviations within logical constraints across long text frameworks." },
-            { id: 6, type: "medium", title: "Constraint Optimization Auditing", rate: 39.50, req: "Verify systems formatting output structures match schema instructions." },
-            { id: 7, type: "complex", title: "Mathematical Proof Engineering", rate: 45.00, req: "Debug mathematical computation steps within system output data." },
-            { id: 8, type: "complex", title: "Python Code Vector Synthesis", rate: 52.00, req: "Trace syntax validation constraints inside target coding environments." },
-            { id: 9, type: "complex", title: "Reasoning Tree Optimization", rate: 58.50, req: "Assess execution graphs for complex logical verification logic." },
-            { id: 10, type: "complex", title: "Expert Domain Hyper-Tuning", rate: 65.00, req: "Maximum Tier Evaluation. Requires advanced analytical background and verification proofs." }
-        ];
-
-        // Global State Parameters
-        let completedTasks = 0;
-        let balanceEarned = 0.00;
-        const maxTasks = 10;
-
-        // SVG Circular Elements Setup
-        const circle = document.getElementById('trackerCircle');
-        const radius = circle.r.baseVal.value;
-        const circumference = radius * 2 * Math.PI;
-        circle.style.strokeDasharray = `${circumference} ${circumference}`;
-        circle.style.strokeDashoffset = circumference;
-
-        // Core Initialization Logic
-        window.addEventListener('DOMContentLoaded', () => {
-            renderTaskGridElements();
-            loadStateFromLocalStorage();
-            pushTerminalLog("AX_KERNEL: Hardware abstraction layers synced successfully.");
-        });
-
-        function renderTaskGridElements() {
-            const container = document.getElementById('tasksDisplayMatrix');
-            container.innerHTML = "";
-            
-            taskDatabase.forEach(task => {
-                const card = document.createElement('div');
-                card.className = `task-card`;
-                card.setAttribute('data-difficulty', task.type);
-                card.onclick = () => launchTaskApplication(task.title, task.req, task.rate);
-
-                card.innerHTML = `
-                    <div>
-                        <div class="card-header-flex">
-                            <h3 class="task-title">${task.title}</h3>
-                            <span class="status-tag tag-${task.type}">${task.type}</span>
-                        </div>
-                        <div class="requirements-box">
-                            <h4>Pipeline Prerequisites</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-microchip"></i> Assessment Pool Active</li>
-                                <li><i class="fa-solid fa-shield"></i> Target Rate Certified</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer-metrics">
-                        <span style="font-size:0.75rem; color:var(--text-secondary);"><i class="fa-solid fa-wallet"></i> Instant Routing</span>
-                        <div class="rate-label">$${task.rate.toFixed(2)} / hr</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Live Dynamic Logger Stream Component
-        function pushTerminalLog(message) {
-            const logger = document.getElementById('terminalLogger');
-            const timestamp = new Date().toTimeString().split(' ')[0];
-            const logLine = document.createElement('div');
-            logLine.className = "terminal-line";
-            logLine.innerHTML = `<span class="terminal-timestamp">[${timestamp}]</span> ${message}`;
-            logger.appendChild(logLine);
-            logger.scrollTop = logger.scrollHeight;
-        }
-
-        // Interactive Filtering Mechanics
-        function filterMarketplace(type, element) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
-            
-            document.querySelectorAll('.task-card').forEach(card => {
-                if (type === 'all' || card.getAttribute('data-difficulty') === type) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-            pushTerminalLog(`MARKET: Array filter rearranged to source indices [${type.toUpperCase()}].`);
-        }
-
-        // State Synchronizations (localStorage)
-        function updateUIMetrics() {
-            document.getElementById('completedTasksCount').innerText = completedTasks;
-            document.getElementById('totalEarnings').innerText = `$${balanceEarned.toFixed(2)}`;
-            
-            const percentage = (completedTasks / maxTasks) * 100;
-            const offset = circumference - (percentage / 100) * circumference;
-            circle.style.strokeDashoffset = offset;
-            document.getElementById('circlePercentText').innerText = `${Math.round(percentage)}%`;
-        }
-
-        function saveStateToLocalStorage() {
-            localStorage.setItem('apex_completedTasks', completedTasks);
-            localStorage.setItem('apex_balanceEarned', balanceEarned);
-        }
-
-        function loadStateFromLocalStorage() {
-            if (localStorage.getItem('apex_completedTasks')) {
-                completedTasks = parseInt(localStorage.getItem('apex_completedTasks'));
-                balanceEarned = parseFloat(localStorage.getItem('apex_balanceEarned'));
-                const storedEmail = localStorage.getItem('apex_userEmail') || "Verified Operator Node";
-                
-                document.getElementById('lockShield').classList.add('hidden');
-                document.getElementById('userDisplayEmail').innerText = `Operator: ${storedEmail}`;
-                document.getElementById('walletAddress').innerText = `0x${Math.random().toString(16).substr(2, 6).toUpperCase()}...Saved`;
-                updateUIMetrics();
-            }
-        }
-
-        // Actions & Interactive Flows
-        function handleOnboarding(e) {
-            e.preventDefault();
-            const email = document.getElementById('regEmail').value;
-            
-            localStorage.setItem('apex_userEmail', email);
-            document.getElementById('lockShield').classList.add('hidden');
-            document.getElementById('userDisplayEmail').innerText = `Operator: ${email}`;
-            
-            const randomHex = Math.random().toString(16).substr(2, 6).toUpperCase();
-            document.getElementById('walletAddress').innerText = `0x${randomHex}...Web3`;
-            
-            pushTerminalLog("SYSTEM: Handshake initialized for node profile [" + email + "]. Data streams clear.");
-            updateUIMetrics();
-        }
-
-        function launchTaskApplication(title, textReq, rate) {
-            if (completedTasks < maxTasks) {
-                completedTasks++;
-                balanceEarned += rate;
-                
-                updateUIMetrics();
-                saveStateToLocalStorage();
-                pushTerminalLog("ESCROW: Allocated metrics node to array link. Balance entry: +$" + rate.toFixed(2));
-            } else {
-                pushTerminalLog("WARN: Operational threshold maximum achieved [10/10]. Reset cache to cycle.");
-            }
-
-            document.getElementById('targetTaskName').innerText = title;
-            document.getElementById('targetTaskReqs').innerText = textReq;
-            
-            const textBody = "Hello, I am interested in applying for the task profile: " + title + ". Please find my credentials linked.";
-            const subject = encodeURIComponent("Application Stream: " + title);
-            const body = encodeURIComponent(textBody);
-            
-            document.getElementById('directMailBtn').href = "mailto:apextaskingcompany@gmail.com?subject=" + subject + "&body=" + body;
-            document.getElementById('directWhatsappBtn').href = "https://wa.me/18705490483?text=" + encodeURIComponent("Hello, I am inquiring about the task payload allocation: " + title);
-            
-            document.getElementById('appModal').style.display = 'flex';
-        }
-
-        function closeApplication() { document.getElementById('appModal').style.display = 'none'; }
-        
-        function toggleSystemTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const targetTheme = currentTheme === 'matrix' ? 'default' : 'matrix';
-            document.documentElement.setAttribute('data-theme', targetTheme);
-            pushTerminalLog("THEME: Matrix color space remapped to [" + targetTheme.toUpperCase() + "].");
-        }
-    </script>
 </body>
 </html>
